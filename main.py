@@ -220,6 +220,8 @@ def text_to_html(report_text: str) -> str:
                 continue
 
             label, value = line[2:].split(":", 1)
+            label = label.strip()
+            value = value.strip()
             color = "#cccccc"
             if "(" in value and "%" in value:
                 pct_text = value[value.index("(") + 1 : value.index(")")]
@@ -230,8 +232,10 @@ def text_to_html(report_text: str) -> str:
                     pass
 
             rows += (
-                f'<tr><td style="padding:6px 12px;color:#aaa;">{label.strip()}</td>'
-                f'<td style="padding:6px 12px;color:{color};font-weight:bold;">{value.strip()}</td></tr>'
+                f'<tr>'
+                f'<td style="padding:8px 10px;color:#9aa4b2;font-size:13px;width:120px;">{label}</td>'
+                f'<td style="padding:8px 10px;color:{color};font-weight:700;font-size:14px;">{value}</td>'
+                f'</tr>'
             )
 
         card = f"""
